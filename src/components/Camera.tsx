@@ -1,31 +1,17 @@
-import {useFrame, useThree} from '@react-three/fiber'
-import {useCameraStore} from '../stores/cameraStore.ts'
-import {useRef} from 'react'
-import {Euler, Vector3} from 'three'
+import {useCameraStore} from '../stores/cameraStore'
+import PointerDragControls from './PointerDragControls'
 
-export function Camera() {
-    const camera = useThree((state) => state.camera)
-    const { currentNodeId, nodes } = useCameraStore()
-    const targetRef = useRef({
-        position: new Vector3(),
-        rotation: new Euler(),
-    })
+export default function Camera() {
+    const targetId = useCameraStore((state) => state.currentTarget)
+    const target = useCameraStore((state) => state.targets[targetId])
+    if (!target) return null
 
-    useFrame(() => {
-        const node = nodes[currentNodeId]
-        if (!node) return
-
-        // Lerp to new position
-        targetRef.current.position.set(...node.position)
-        camera.position.lerp(targetRef.current.position, 0.1)
-
-        if (node.rotation) {
-            targetRef.current.rotation.set(...node.rotation)
-            camera.rotation.x += (targetRef.current.rotation.x - camera.rotation.x) * 0.1
-            camera.rotation.y += (targetRef.current.rotation.y - camera.rotation.y) * 0.1
-            camera.rotation.z += (targetRef.current.rotation.z - camera.rotation.z) * 0.1
-        }
-    })
-
-    return null
+    return (
+        <PointerDragControls
+            position={target.position}
+            rotation={target.rotation}
+            lockPitch={target.lockPitch}
+            lockYaw={target.lockYaw}
+        />
+    )
 }
