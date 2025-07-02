@@ -10,10 +10,12 @@ export default function App() {
         addTarget('main', {
             position: [0, 1, 2],
             rotation: [0, 0],
+            lockYaw: [-Math.PI / 2, Math.PI / 2],
         })
         addTarget('arcade', {
-            position: [2, 1.2, 1],
+            position: [0, 2, 1],
             rotation: [0, Math.PI / 2],
+            lockPitch: [-Math.PI / 2, Math.PI / 2],
         })
 
     }, []);

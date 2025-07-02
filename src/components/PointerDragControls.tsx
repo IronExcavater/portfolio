@@ -94,11 +94,11 @@ export default function PointerDragControls({
         deltaRot.current[0] += velocity.current[0]
         deltaRot.current[1] += velocity.current[1]
 
-        let pitch = originRot.current[0] + deltaRot.current[0]
-        let yaw = originRot.current[1] + deltaRot.current[1]
+        if (lockPitch) deltaRot.current[0] = MathUtils.clamp(deltaRot.current[0], lockPitch[0], lockPitch[1])
+        if (lockYaw) deltaRot.current[1] = MathUtils.clamp(deltaRot.current[1], lockYaw[0], lockYaw[1])
 
-        if (lockPitch) pitch = MathUtils.clamp(pitch, lockPitch[0], lockPitch[1])
-        if (lockYaw) yaw = MathUtils.clamp(yaw, lockYaw[0], lockYaw[1])
+        const pitch = originRot.current[0] + deltaRot.current[0]
+        const yaw = originRot.current[1] + deltaRot.current[1]
 
         dragTarget.current.rotation.set(0, yaw, 0)
         dragTarget.current.rotateX(pitch)
