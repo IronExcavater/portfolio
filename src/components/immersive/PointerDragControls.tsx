@@ -1,6 +1,6 @@
-import {useFrame, useThree} from '@react-three/fiber'
 import {useEffect, useRef} from 'react'
 import {MathUtils, Object3D, Vector3} from 'three'
+import {useFrame, useThree} from '@react-three/fiber'
 
 type PointerDragControlProps = {
     position?: [number, number, number]
@@ -19,7 +19,7 @@ export default function PointerDragControls({
     lockYaw = null,
     dragStrength = 0.002,
     tiltStrength = 0.1,
-    damping = 0.9
+    damping = 0.9,
 }: PointerDragControlProps) {
     const camera = useThree((state) => state.camera)
 

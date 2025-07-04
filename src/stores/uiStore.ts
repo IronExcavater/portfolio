@@ -1,6 +1,6 @@
 import {create} from 'zustand'
 
-type Section = 'about' | 'projects' | 'experience' | 'education' | 'contact'
+export type Section = 'about' | 'projects' | 'experience' | 'education' | 'contact'
 export const sections: Section[] = ['about', 'projects', 'experience', 'education', 'contact']
 
 type Mode = 'classic' | 'immersive'

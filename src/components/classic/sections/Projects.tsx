@@ -1,4 +1,4 @@
-import {projects} from '../../data/portfolioData.ts'
+import {projects} from '../../../data/portfolioData.ts'
 
 export default function Projects() {
     return (

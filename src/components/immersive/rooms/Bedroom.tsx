@@ -1,5 +1,5 @@
-import {useCameraStore, type CameraTarget} from '../../../stores/cameraStore.ts'
 import {useEffect} from 'react'
+import {useCameraStore, type CameraTarget} from '../../../stores/cameraStore.ts'
 
 const targets: CameraTarget[] = [
     {

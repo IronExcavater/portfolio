@@ -1,7 +1,7 @@
+import {type JSX} from 'react'
 import {useUIStore, type Section} from '../../stores/uiStore.ts'
-
-import About from './About'
-import Projects from './Projects'
+import About from './sections/About.tsx'
+import Projects from './sections/Projects.tsx'
 
 const sectionMap: Record<Section, JSX.Element> = {
     about: <About />,

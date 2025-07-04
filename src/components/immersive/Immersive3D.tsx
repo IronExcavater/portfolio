@@ -1,10 +1,10 @@
-import Camera from './Camera.tsx'
+import {type JSX} from 'react'
 import {Canvas} from '@react-three/fiber'
-import {useUIStore} from '../../stores/uiStore'
-
-import Bedroom from './rooms/Bedroom'
-import Arcade from './rooms/Arcade'
-import Office from './rooms/Office'
+import {useUIStore, type Section} from '../../stores/uiStore.ts'
+import Camera from './Camera.tsx'
+import Bedroom from './rooms/Bedroom.tsx'
+import Arcade from './rooms/Arcade.tsx'
+import Office from './rooms/Office.tsx'
 
 const sectionMap: Record<Section, JSX.Element> = {
     about: <Bedroom />,
