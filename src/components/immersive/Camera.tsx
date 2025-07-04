@@ -1,5 +1,5 @@
-import {useCameraStore} from '../stores/cameraStore'
-import PointerDragControls from './PointerDragControls'
+import {useCameraStore} from '../../stores/cameraStore.ts'
+import PointerDragControls from './PointerDragControls.tsx'
 
 export default function Camera() {
     const targetId = useCameraStore((state) => state.currentTarget)

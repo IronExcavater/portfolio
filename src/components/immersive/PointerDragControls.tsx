@@ -1,6 +1,6 @@
-import { useFrame, useThree } from '@react-three/fiber'
-import { useEffect, useRef } from 'react'
-import { MathUtils, Object3D, Vector3 } from 'three'
+import {useFrame, useThree} from '@react-three/fiber'
+import {useEffect, useRef} from 'react'
+import {MathUtils, Object3D, Vector3} from 'three'
 
 type PointerDragControlProps = {
     position?: [number, number, number]

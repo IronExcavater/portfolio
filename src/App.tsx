@@ -1,34 +1,17 @@
-import { Canvas } from '@react-three/fiber'
 import './styles/app.css'
-import Camera from './components/Camera'
-import {useEffect} from 'react'
-import {useCameraStore} from './stores/cameraStore'
+import {useUIStore} from './stores/uiStore'
+import Menu from './components/shared/Menu.tsx'
+import Classic2D from './components/classic/Classic2D'
+import Immersive3D from './components/immersive/Immersive3D'
 
 export default function App() {
-    useEffect(() => {
-        const addTarget = useCameraStore.getState().addTarget
-        addTarget('main', {
-            position: [0, 1, 2],
-            rotation: [0, 0],
-        })
-        addTarget('arcade', {
-            position: [2, 1.2, 1],
-            rotation: [0, Math.PI / 2],
-        })
-
-    }, []);
+    const {mode} = useUIStore()
 
     return (
-        <Canvas shadows camera={{ fov: 60, near: 0.1, far: 1000 }}>
-            <ambientLight intensity={0.5} />
-            <pointLight position={[10, 10, 10]} />
-
-            <Camera />
-
-            <mesh position={[0, 1, 0]} onClick={() => useCameraStore.getState().moveTo('arcade')}>
-                <boxGeometry />
-                <meshStandardMaterial color="skyblue" />
-            </mesh>
-        </Canvas>
+        <>
+            <Menu />
+            {mode === 'classic' && <Classic2D />}
+            {mode === 'immersive' && <Immersive3D />}
+        </>
     )
 }

@@ -1,6 +1,7 @@
-import { create } from 'zustand'
+import {create} from 'zustand'
 
 export type CameraTarget = {
+    id: string,
     position: [number, number, number],
     rotation: [number, number],
     lockPitch?: [number, number] | null,
@@ -14,6 +15,7 @@ type CameraStore = {
 
     addTarget: (id: string, target: CameraTarget) => void
     tryGetTarget: (id: string) => CameraTarget | null
+    clearTargets: () => void
 
     moveTo: (id: string) => void
     moveBack: () => void
@@ -37,6 +39,10 @@ export const useCameraStore = create<CameraStore>((set, get) => ({
         const newTarget = get().targets[id]
         if (!newTarget) console.warn(`No camera target found with id ${id}`)
         return newTarget
+    },
+
+    clearTargets: () => {
+        set({ targets: {} })
     },
 
     moveTo: (id) => {
