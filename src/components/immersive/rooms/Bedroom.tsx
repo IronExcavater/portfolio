@@ -4,13 +4,13 @@ import {useCameraStore, type CameraTarget} from '../../../stores/cameraStore.ts'
 const targets: CameraTarget[] = [
     {
         id: 'root',
-        position: [0, 1, 2],
+        position: [0, 1, 0],
         rotation: [0, 0],
     },
     {
-        id: 'poster',
-        position: [1, 1.2, -3],
-        rotation: [0, Math.PI / 2],
+        id: 'computer',
+        position: [0, 1, -2],
+        rotation: [0, 0],
     }
 ]
 

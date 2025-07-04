@@ -6,7 +6,6 @@ import Bedroom from './rooms/Bedroom.tsx'
 import Arcade from './rooms/Arcade.tsx'
 import Office from './rooms/Office.tsx'
 import Css3d from './Css3d.tsx'
-import Css3dIframe from './Css3dIframe.tsx'
 
 const sectionMap: Record<Section, JSX.Element> = {
     about: <Bedroom />,

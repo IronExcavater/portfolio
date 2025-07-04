@@ -15,7 +15,7 @@ type PointerDragControlProps = {
 export default function PointerDragControls({
     position = [0, 0, 0],
     rotation = [0, 0],
-    lockPitch = null,
+    lockPitch = [-Math.PI / 2, Math.PI / 2],
     lockYaw = null,
     dragStrength = 0.002,
     tiltStrength = 0.1,
@@ -78,17 +78,22 @@ export default function PointerDragControls({
             if (e.button === 2) isDragging.current = false
         }
 
+        const onContextMenu = (e: MouseEvent) => {
+            e.preventDefault()
+        }
+
         window.addEventListener('pointerdown', onPointerDown)
         window.addEventListener('pointermove', onPointerMove)
         window.addEventListener('pointerup', onPointerUp)
-        window.addEventListener('contextmenu', (e) => e.preventDefault())
+        window.addEventListener('contextmenu', onContextMenu)
 
         return () => {
             window.removeEventListener('pointerdown', onPointerDown)
             window.removeEventListener('pointermove', onPointerMove)
             window.removeEventListener('pointerup', onPointerUp)
+            window.removeEventListener('contextmenu', onContextMenu)
         }
-    }, [dragStrength]);
+    });
 
     useFrame(() => {
         deltaRot.current[0] += velocity.current[0]

@@ -16,40 +16,38 @@ export default function Css3dIframe({
     scale = [800, 600],
 }: Css3dIframeProps) {
     const {scene} = useThree()
-    const iframeRef = useRef<HTMLIFrameElement | null>(null)
-    const cssObjectRef = useRef<CSS3DObject | null>(null)
+    const iframe = useRef<HTMLIFrameElement | null>(null)
+    const cssObject = useRef<CSS3DObject | null>(null)
 
     useEffect(() => {
-        const iframe = document.createElement('iframe')
-        iframe.src = url
-        iframe.width = `${scale[0]}`
-        iframe.height = `${scale[1]}`
-        iframe.allowFullscreen = false
-        iframeRef.current = iframe
-    }, [scale, url])
+        iframe.current = document.createElement('iframe')
+
+        cssObject.current = new CSS3DObject(iframe.current)
+        cssObject.current.scale.set(0.001, 0.001, 0.001)
+    }, []);
+
+
+    useEffect(() => {
+        if (!iframe.current) return;
+
+        iframe.current.src = url
+        iframe.current.width = `${scale[0]}`
+        iframe.current.height = `${scale[1]}`
+        iframe.current.allowFullscreen = false
+    }, [iframe, scale, url])
     
     useEffect(() => {
-        if (!iframeRef.current) return
-
-        const object = new CSS3DObject(iframeRef.current)
-        object.scale.set(0.001, 0.001, 0.001)
-        cssObjectRef.current = object
-        
-        scene.add(object)
+        if (cssObject.current) scene.add(cssObject.current)
         
         return () => {
-            scene.remove(object)
+            if (cssObject.current) scene.remove(cssObject.current)
         }
     }, [scene])
 
-    useEffect(() => {
-        if (!iframeRef.current || !cssObjectRef.current) return
-        cssObjectRef.current.element = iframeRef.current
-    }, [cssObjectRef, iframeRef]);
 
     useEffect(() => {
-        cssObjectRef.current?.position.set(...position)
-        cssObjectRef.current?.rotation.set(...rotation)
+        cssObject.current?.position.set(...position)
+        cssObject.current?.rotation.set(...rotation)
     }, [position, rotation])
 
     return null

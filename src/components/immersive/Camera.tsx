@@ -10,7 +10,7 @@ export default function Camera() {
         <PointerDragControls
             position={target.position}
             rotation={target.rotation}
-            lockPitch={target.lockPitch}
+            lockPitch={target.lockPitch ?? [-Math.PI / 2, Math.PI / 2]}
             lockYaw={target.lockYaw}
         />
     )
