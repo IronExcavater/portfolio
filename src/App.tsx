@@ -1,8 +1,8 @@
 import './styles/app.css'
 import {useUIStore} from './stores/uiStore.ts'
 import Menu from './components/shared/Menu.tsx'
-import Classic2D from './components/classic/Classic2D.tsx'
-import Immersive3D from './components/immersive/Immersive3D.tsx'
+import Classic2d from './components/classic/Classic2d.tsx'
+import Immersive3d from './components/immersive/Immersive3d.tsx'
 
 export default function App() {
     const {mode} = useUIStore()
@@ -10,8 +10,8 @@ export default function App() {
     return (
         <>
             <Menu />
-            {mode === 'classic' && <Classic2D />}
-            {mode === 'immersive' && <Immersive3D />}
+            {mode === 'classic' && <Classic2d />}
+            {mode === 'immersive' && <Immersive3d />}
         </>
     )
 }

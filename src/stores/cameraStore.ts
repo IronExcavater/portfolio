@@ -46,8 +46,8 @@ export const useCameraStore = create<CameraStore>((set, get) => ({
     },
 
     moveTo: (id) => {
-        const { currentTarget, previousTargets } = get()
-        if (id === currentTarget) return
+        const { currentTarget, tryGetTarget, previousTargets } = get()
+        if (id === currentTarget || !tryGetTarget(id)) return
 
         const existingIndex = previousTargets.indexOf(id)
         const newPrevious = existingIndex !== -1

@@ -9,7 +9,7 @@ const targets: CameraTarget[] = [
     },
     {
         id: 'poster',
-        position: [1, 1.2, 0],
+        position: [1, 1.2, -3],
         rotation: [0, Math.PI / 2],
     }
 ]
@@ -24,7 +24,7 @@ export default function Bedroom() {
     }, [addTarget, clearTargets, moveTo])
 
     return (
-        <mesh position={[0, 1, 0]} onClick={() => useCameraStore.getState().moveTo('arcade')}>
+        <mesh position={[0, 1, -3]} onClick={() => useCameraStore.getState().moveTo('poster')}>
             <boxGeometry />
             <meshStandardMaterial color="skyblue" />
         </mesh>

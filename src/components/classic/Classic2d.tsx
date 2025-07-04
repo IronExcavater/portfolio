@@ -8,7 +8,7 @@ const sectionMap: Record<Section, JSX.Element> = {
     projects: <Projects />,
 }
 
-export default function Classic2D() {
+export default function Classic2d() {
     const {section} = useUIStore()
 
     return (
